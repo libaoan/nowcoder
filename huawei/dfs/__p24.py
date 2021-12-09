@@ -33,14 +33,24 @@ def judge(nums, sign):
     return eval("".join(s)) == 24
 
 
-def dfs(nums):
+def srange(nums):
     ss = "+-*/"
     for i in range(len(ss)):
         for j in range(len(ss)):
             for k in range(len(ss)):
                 sign = [ss[i], ss[j], ss[k]]
                 if judge(nums, sign):
-                    return "true"
+                    print(nums, sign)
+                    return True
+    return False
+
+
+def nrange(nums):
+
+    for i in range(len(nums)):
+        snum = [nums[i], nums[(i+1)%4], nums[(i+2)%4], nums[(i+3)%4]]
+        if srange(snum):
+            return "true"
     return "false"
 
 
@@ -50,7 +60,8 @@ if __name__ == "__main__":
             #nums = input()
             #nums = [n.strip() for n in nums.split()]
             nums = ["1", "2", "10", "2"]
-            print(dfs(nums))
+            nums = ["3", "3", "4", "4"]
+            print(nrange(nums))
         except Exception as e:
             print(e)
             # break
