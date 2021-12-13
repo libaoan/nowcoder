@@ -54,14 +54,31 @@ def nrange(nums):
     return "false"
 
 
+
+def check(arr, res):
+
+    if res < 1:
+        return False
+
+    if len(arr) == 1:
+        return arr[0] == res
+
+    for i in range(len(arr)):
+        left = arr[:i] + arr[i+1:]
+        v = arr[i]
+        if check(left, res+v) or check(left, res-v) or check(left, res*v) or check(left, res/v):
+            return True
+    return False
+
+
 if __name__ == "__main__":
     while True:
         try:
             #nums = input()
-            #nums = [n.strip() for n in nums.split()]
-            nums = ["1", "2", "10", "2"]
-            nums = ["3", "3", "4", "4"]
-            print(nrange(nums))
+            #nums = map(int, [n.strip() for n in nums.split()])
+            nums = [1, 2, 10, 2]
+            # nums = ["3", "3", "4", "4"]
+            print(check(nums, 24))
         except Exception as e:
             print(e)
             # break
