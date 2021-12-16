@@ -91,12 +91,20 @@ def merge(nums1, nums2, reverse=False):
     res = []
     i, j = 0, 0
     while i < len(nums1) and j < len(nums2):
-        if nums1[i][1] >= nums2[j][1]:
-            res.append(nums1[i])
-            i = i + 1
+        if reverse:
+            if nums1[i][1] <= nums2[j][1]:
+                res.append(nums1[i])
+                i = i + 1
+            else:
+                res.append(nums2[j])
+                j = j + 1
         else:
-            res.append(nums2[j])
-            j = j + 1
+            if nums1[i][1] >= nums2[j][1]:
+                res.append(nums1[i])
+                i = i + 1
+            else:
+                res.append(nums2[j])
+                j = j + 1
     while i < len(nums1):
         res.append(nums1[i])
         i = i + 1
@@ -105,8 +113,6 @@ def merge(nums1, nums2, reverse=False):
         res.append(nums2[j])
         j = j + 1
 
-    if reverse:
-        return res[::-1]
     return res
 
 
@@ -115,8 +121,8 @@ def sorts(nums, reverse=False):
     if ln == 1:
         return nums
     i = int(ln / 2)
-    nums1 = sorts(nums[:i], reverse)
-    nums2 = sorts(nums[i:], reverse)
+    nums1 = sorts(nums[:i], reverse=reverse)
+    nums2 = sorts(nums[i:], reverse=reverse)
     return merge(nums1, nums2, reverse=reverse)
 
 
@@ -141,11 +147,37 @@ def run():
 
 def run2():
     nums = [
-        ("moolgouua",43),
-        ("aebjag", 87),
-        ("b", 67)
+        ("qhsq", 15),
+        ("ozslg", 79),
+        ("ncttmtsphb", 71),
+        ("a", 39),
+        ("eeiuyzsj", 34),
+        ("nmlrokx", 21),
+        ("pjizylo", 90),
+        ("ec", 45),
+        ("f", 12),
+        ("sh", 31),
+        ("fm", 25),
+        ("ptprphubqk", 29),
+        ("wxdiwv", 0),
+        ("uhlcpjtxad", 60),
+        ("w",20),
+        ("zwktbpun", 70),
+        ("efzfkf", 69),
+        ("v", 31),
+        ("rsnrgtl", 73),
+        ("lhdo", 76),
+        ("wt", 56),
+        ("mcdwd", 14),
+        ("ydrnoyd", 37),
+        ("gmlfds", 76),
+        ("zx", 1),
+        ("dqx", 98),
+        ("gz", 90),
+        ("kvbzrwrrjj", 13),
+
     ]
-    res = sorts(nums)
+    res = sorts(nums, reverse=True)
     for r in res:
         print(r[0], r[1])
 
