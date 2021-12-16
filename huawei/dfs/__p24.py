@@ -45,16 +45,6 @@ def srange(nums):
     return False
 
 
-def nrange(nums):
-
-    for i in range(len(nums)):
-        snum = [nums[i], nums[(i+1)%4], nums[(i+2)%4], nums[(i+3)%4]]
-        if srange(snum):
-            return "true"
-    return "false"
-
-
-
 def check(arr, res):
 
     if res < 1:
@@ -77,8 +67,11 @@ if __name__ == "__main__":
             #nums = input()
             #nums = map(int, [n.strip() for n in nums.split()])
             nums = [1, 2, 10, 2]
-            # nums = ["3", "3", "4", "4"]
-            print(check(nums, 24))
+            # print(check(nums, 24))
+            nums = ["3", "3", "4", "4"]
+            print(srange(nums))
+            break
+
         except Exception as e:
             print(e)
-            # break
+            break
